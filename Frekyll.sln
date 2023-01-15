@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Frekyll", "Frekyll\Frekyll.fsproj", "{9BC1BA46-AB36-4B9E-A7A9-7B3E53E6C329}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Frekyll.Example", "Frekyll.Example\Frekyll.Example.fsproj", "{5DE40832-2399-47E2-AF71-A9E9FF1339BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BC1BA46-AB36-4B9E-A7A9-7B3E53E6C329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BC1BA46-AB36-4B9E-A7A9-7B3E53E6C329}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BC1BA46-AB36-4B9E-A7A9-7B3E53E6C329}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BC1BA46-AB36-4B9E-A7A9-7B3E53E6C329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DE40832-2399-47E2-AF71-A9E9FF1339BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DE40832-2399-47E2-AF71-A9E9FF1339BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DE40832-2399-47E2-AF71-A9E9FF1339BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DE40832-2399-47E2-AF71-A9E9FF1339BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

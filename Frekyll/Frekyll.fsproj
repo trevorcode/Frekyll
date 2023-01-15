@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="PathParser.fs" />
+        <Compile Include="Library.fs" />
+        <Compile Include="TemplateParser.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FParsec" Version="1.1.1" />
+      <PackageReference Include="Markdig" Version="0.30.4" />
+    </ItemGroup>
+
+</Project>

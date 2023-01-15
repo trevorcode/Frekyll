@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net7.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="Program.fs" />
+        <Content Include="input\posts\2015-08-23-example.markdown" />
+        <Content Include="templates\index.html" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Frekyll\Frekyll.fsproj" />
+    </ItemGroup>
+
+
+</Project>
