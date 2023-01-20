@@ -7,6 +7,7 @@
 
     <ItemGroup>
         <Compile Include="PathParser.fs" />
+        <Compile Include="RouteBuilder.fs" />
         <Compile Include="Library.fs" />
         <Compile Include="TemplateParser.fs" />
         <Compile Include="Rule.fs" />

@@ -5,7 +5,7 @@ open Frekyll.Rule
 let posts: RuleBuilder =
     {
         Path = PathParser.parsePath (Path.Combine (PathParser.rootPath, "input/posts"))
-        Route = "/dawg/yo/"
+        Route = Route.replaceExtension ".html"
         Transform = Core.convertMdToHtml
         Template = "templates/index.html"
         
