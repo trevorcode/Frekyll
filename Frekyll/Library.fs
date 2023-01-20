@@ -8,29 +8,22 @@ open Markdig
 open Markdig.Syntax
 open Markdig.Extensions.Yaml
 
-
-type CtxType =
+type Field =
     | Text of string
-    | Ctx of Context
+    | List of List<string>
 
-and Context = Context of IDictionary<string, CtxType>
+and Context = Context of IDictionary<string, Field>
 
 module Context =
-    let getProperty (propertyName: string) (Context ctxList: Context) : CtxType =
+    let getProperty (propertyName: string) (Context ctxList: Context) : Field =
         ctxList.Item propertyName
 
     let propertyExists (name) (Context ctxList: Context) = ctxList.ContainsKey(name)
-    
-    let getSubContext (contextName: string) (Context ctxList: Context) : Context =
-        let ctxType = ctxList.Item contextName
-        match ctxType with
-        | Text t -> failwith "Tried to read property of context type"
-        | Ctx c -> c
 
-    let value (ctxType: CtxType) : string =
+    let value (ctxType: Field) : string =
         match ctxType with
         | Text t -> t
-        | Ctx _ -> failwith "Tried to read property of context type"
+        | List _ -> failwith "Tried to read property of context type"
 
 module Core =
     let rec convertMdToHtml (mdString: string) : Context =
@@ -71,23 +64,3 @@ module Core =
         Context(dict <| ("body", Text html) :: res)
 
 
-type RuleBuilder =
-    { Path: FileType
-      Transformer: string -> Context
-      Route: string }
-
-module RuleBuilder =
-    ()
-//    let run ruleBuilder =
-//        let runRuleOnFile path =
-//            let file = File.ReadAllText(path)
-//            let res = Core.convertMdToHtml file
-//
-//
-//
-//
-//        let testFile = "./input/posts/2015-08-23-example.markdown"
-//        let file = File.ReadAllText(testFile)
-//
-//        let res = Core.convertMdToHtml file
-//

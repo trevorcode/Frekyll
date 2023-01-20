@@ -12,8 +12,9 @@ type FileType =
 let parsePath (path: string): FileType  =
     match path with
     | p when File.Exists(p) ->
-        Directory path
-    | p when Directory.Exists(p) ->
         SingleFile path
+    | p when Directory.Exists(p) ->
+        Directory path
     | _ ->
         failwith "Path entered is not a file or directory"
+

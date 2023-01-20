@@ -62,13 +62,14 @@ templateElemRef
                conditional
                identity
                rawHtml ]
-
+let run' templateText = run templateElem templateText
 let run text =
     match run templateElem text with
     | Success (res, _, _) -> res
     | Failure (err, _, _) -> failwith err
 
 let execute parsedTemplate (context: Context) =
+    
     let rec evaluate (acc: string) (subContext: Context) expr =
         match expr with
         | Chunk c -> acc + c
