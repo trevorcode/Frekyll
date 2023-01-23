@@ -6,25 +6,44 @@ open Frekyll.PathParser
 
 type RuleBuilder =
     { Path: FileType
-      Template: string
-      Transform: string -> Context
-      Route: string -> string }
+      TemplateUrl: (string) option
+      Compiler: (string -> Context) option
+      RouteRewrite: string -> string }
 
 module RuleBuilder =
+    open FsToolkit.ErrorHandling
     let removePathFromOther (p1: string) (p2: string) =
         p2.Substring(p1.Length)
-        
-    let runSingleFile builder filePath=
-        let template = File.ReadAllText(PathParser.rootPath + builder.Template)
+
+    let putValuesIntoTemplate filePath url compiler =
+        let template = File.ReadAllText(PathParser.rootPath + url)
         let text = File.ReadAllText(filePath)
         
-        let ctx = builder.Transform text
-        
+        let ctx = compiler text
+
         let res = TemplateParser.parse template ctx
+        res             
+        
+    let getValuesFromFile filePath =
+        File.ReadAllText(filePath)
+
+        
+    let runSingleFile (builder: RuleBuilder) filePath =
+        let urlAndCompiler = Option.zip (builder.TemplateUrl) builder.Compiler
+        let res = 
+            urlAndCompiler
+            |> Option.either
+                (fun (url, compiler) -> 
+                    putValuesIntoTemplate filePath url compiler)
+                (fun () -> getValuesFromFile filePath)
         
         let cleanedPath = removePathFromOther rootPath filePath
         let targetPath = Path.Join(rootPath, "site", cleanedPath)
-        let newFilePath = builder.Route targetPath
+        let newFilePath = builder.RouteRewrite targetPath
+
+        let fileName = Path.GetFileName(newFilePath)
+        let directories = newFilePath.Replace(fileName, "")
+        Directory.CreateDirectory(directories) |> ignore
         
         //Todo: make sure directories exist before writing to files
 //        let directories = Directory.Get(newFilePath)
